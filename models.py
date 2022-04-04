@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class Classificator(nn.Module):
-    def __init__(self, img_channels, img_size, features) -> None:
+    def __init__(self, img_channels: int, img_size: int, features: int) -> None:
         super(Classificator, self).__init__()
         self.img_channels = img_channels
         self.img_size = img_size
@@ -34,6 +34,7 @@ class Classificator(nn.Module):
         return nn.Sequential(
             nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
                       stride=stride, padding=padding),
+            nn.BatchNorm2d(out_channels),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
